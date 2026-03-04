@@ -1,7 +1,9 @@
 <?php
+    use Illuminate\Support\Facades\Route;
+    use App\Models\Equipment;
 
-use Illuminate\Support\Facades\Route;
+    Route::get('/', function() {
+        $allEquipment = Equipment::all();
 
-Route::get('/', function () {
-    return view('welcome');
-});
+        return view('welcome', ['equipment' => $allEquipment]);
+    });

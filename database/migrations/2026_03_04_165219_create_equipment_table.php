@@ -12,8 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('equipment', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->id(); // This automatically creates an auto-incrementing primary key
+            $table->string('name'); // e.g., "MacBook Pro 14", "Dell Monitor"
+            $table->string('serial_number')->unique(); // Ensures no two items have the same serial
+            $table->string('type'); // e.g., "Laptop", "Camera", "Adapter"
+            $table->string('status')->default('Available'); // Automatically sets new items to 'Available'
+            $table->timestamps(); // Automatically creates 'created_at' and 'updated_at' columns
         });
     }
 

@@ -3,23 +3,43 @@
 namespace Database\Seeders;
 
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Equipment; // <--- DON'T FORGET THIS LINE!
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    use WithoutModelEvents;
-
-    /**
-     * Seed the application's database.
-     */
     public function run(): void
     {
-        // User::factory(10)->create();
+        // Item 1
+        Equipment::create([
+            'name' => 'MacBook Air M2',
+            'serial_number' => 'MAC-88472',
+            'type' => 'Laptop',
+            'status' => 'Available'
+        ]);
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        // Item 2
+        Equipment::create([
+            'name' => 'Dell 27-inch 4K Monitor',
+            'serial_number' => 'DEL-09938',
+            'type' => 'Display',
+            'status' => 'Available'
+        ]);
+
+        // Item 3
+        Equipment::create([
+            'name' => 'Sony A7III Camera',
+            'serial_number' => 'SNY-11223',
+            'type' => 'Camera',
+            'status' => 'Checked Out' // Status checked out
+        ]);
+
+        // Item 4
+        Equipment::create([
+            'name' => 'Sony DMG Camera',
+            'serial_number' => 'SNY-90283',
+            'type' => 'Camera',
+            'status' => 'Broken' // Status broken
         ]);
     }
 }
