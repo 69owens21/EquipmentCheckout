@@ -41,5 +41,12 @@ class DatabaseSeeder extends Seeder
             'type' => 'Camera',
             'status' => 'Broken' // Status broken
         ]);
+
+        Equipment::create([
+            'name' => 'Macbook Air M1',
+            'serial_number' => 'MAC-88923',
+            'type' => 'Laptop',
+            'status' => 'Checked Out'
+        ]);
     }
 }

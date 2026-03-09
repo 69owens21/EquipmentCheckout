@@ -7,5 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Equipment extends Model
 {
     protected $guarded = [];
+
+    protected $fillable = ['name', 'serial_number', 'type', 'status'];
     //
 }
