@@ -3,7 +3,9 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Equipment;
-//MAIN INVENTORY PAGE
+use Illuminate\Http\Request; // <--- THIS LINE IS THE FIX
+
+// MAIN INVENTORY PAGE
 Route::get('/', function () {
     $inventory = Equipment::where('status', '!=', 'Broken')->get();
     return view('welcome', ['equipment' => $inventory]);
@@ -15,22 +17,15 @@ Route::get('/repairs', function () {
     return view('repairs', ['broken' => $brokenItems]);
 });
 
+// SEND TO REPAIR
+// Note: I added a leading slash to '/repair/{id}' to keep it consistent
+Route::post('/repair/{id}', function(Request $request, $id) {
+    $item = Equipment::findOrFail($id);
 
-// REGULAR USER ROUTES
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
-
-// ADMIN ONLY ROUTES
-Route::get('/admin/inventory', function () {
-    return view('admin.inventory');
-})->middleware(['auth', 'admin'])->name('admin.inventory');
-
-// PROFILE ROUTES
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    $item->update([
+        'status' => 'Broken',
+        'repair_notes' => $request->input('notes'),
+        'return_date' => $request->input('return_date'),
+    ]);
+    return back();
 });
-
-require __DIR__.'/auth.php';
