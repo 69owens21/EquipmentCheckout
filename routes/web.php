@@ -138,5 +138,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+// UI PLAYGROUND (Safe space for CSS testing)
+Route::get('/playground', function () {
+    return view('playground');
+});
+
 // The "Engine" for Auth (Login, Register, Logout)
 require __DIR__.'/auth.php';
