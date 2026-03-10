@@ -3,6 +3,10 @@
 <head>
 
     <a href="/register" style="background: blue; color: white; padding: 10px; border-radius: 5px;">Register Now</a>
+    <nav style="margin-bottom: 20px; margin-left: 1150px;">
+        <a href="/repairs" style="text-decoration:none; padding:10px; background: #d35400; color:white; border-radius:5px;">
+            View Repair Queue </a>
+    </nav>
     <title>Equipment Checkout</title>
     <style>
         body { font-family: Arial, sans-serif; padding: 20px; background-color: #f4f7f6; }

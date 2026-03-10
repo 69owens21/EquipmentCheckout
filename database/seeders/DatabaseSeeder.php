@@ -48,5 +48,26 @@ class DatabaseSeeder extends Seeder
             'type' => 'Laptop',
             'status' => 'Checked Out'
         ]);
+
+        // ITEM FOR THE REPAIR QUEUE #1
+        Equipment::create([
+            'name' => 'Sony A7III Camera',
+            'serial_number' => 'SNY-92037',
+            'type' => 'Camera',
+            'status' => 'Broken',
+            'repair_notes' => 'Cracked lens element; waiting on replacement glass from Sony.',
+            'return_date' => '2026-03-25'
+        ]);
+
+        // ITEM FOR THE REPAIR QUEUE #2
+        Equipment::create([
+            'name' => 'iPad Pro 12.9',
+            'serial_number' => 'IPD-44556',
+            'type' => 'Tablet',
+            'status' => 'Broken',
+            'repair_notes' => 'Battery swelling; needs immediate replacement.',
+            'return_date' => '2026-03-15'
+        ]);
     }
+
 }

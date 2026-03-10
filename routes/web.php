@@ -3,11 +3,19 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Equipment;
-
+//MAIN INVENTORY PAGE
 Route::get('/', function () {
-    $equipment = Equipment::all();
-    return view('welcome', compact('equipment'));
+    $inventory = Equipment::where('status', '!=', 'Broken')->get();
+    return view('welcome', ['equipment' => $inventory]);
 });
+
+// REPAIR SHOP ROUTE
+Route::get('/repairs', function () {
+    $brokenItems = Equipment::where('status', 'Broken')->get();
+    return view('repairs', ['broken' => $brokenItems]);
+});
+
+
 // REGULAR USER ROUTES
 Route::get('/dashboard', function () {
     return view('dashboard');

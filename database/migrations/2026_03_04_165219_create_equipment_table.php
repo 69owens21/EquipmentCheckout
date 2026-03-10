@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('serial_number')->unique(); // Ensures no two items have the same serial
             $table->string('type'); // e.g., "Laptop", "Camera", "Adapter"
             $table->string('status')->default('Available'); // Automatically sets new items to 'Available'
+            $table->text('repair_notes')->nullable();
+            $table->date('return_date')->nullable();
             $table->timestamps(); // Automatically creates 'created_at' and 'updated_at' columns
         });
     }
