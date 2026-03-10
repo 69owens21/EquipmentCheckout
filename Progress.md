@@ -1,10 +1,15 @@
-Initial Commit
-- Set up environment using PHPSTORM - Laravel Herd
-- Created Table Equipment & migrated
-- Unlocked model for saving data
-- Set up initial seeder to populate table with test values
-- Set up initial route & html page to display table
+# IT Equipment Asset Manager
 
-Commit #2
-- Added a checkout button that appears next to devices w/ status 'Available' changes status to 'checked out'.
-- Added a registration button with logic.
+A robust web application built with **Laravel 11** and **SQLite** to streamline the lifecycle of IT hardware in a university environment.
+
+## Key Features
+* **Role-Based Access Control (RBAC):** Distinct permissions for Students (Checkout only) and Admins (Full CRUD & Repair Management).
+* **Live Search:** Filter equipment by name, serial number, or category in real-time.
+* **Maintenance Queue:** Dedicated workflow for marking items as broken and tracking expected return dates.
+* **Secure Authentication:** Powered by Laravel Breeze with CSRF protection and session management.
+
+## Tech Stack
+* **Framework:** Laravel 11 (PHP 8.4)
+* **Database:** SQLite
+* **Frontend:** Blade Templates & Custom CSS 
+* **Auth:** Laravel Breeze
