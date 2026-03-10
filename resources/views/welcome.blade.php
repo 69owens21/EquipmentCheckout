@@ -4,13 +4,13 @@
     <title>Equipment Checkout</title>
     <style>
         /* This section controls how the page looks (colors, fonts, spacing) */
-        body { font-family: Arial, sans-serif; padding: 20px; background-color: #f4f7f6; }
-        h1 { color: #2c3e50; }
+        body { font-family: Arial, sans-serif; padding: 20px; background-color: #A7C7E7; }
+        h1 { color: #2c3e50; text-decoration: black; }
 
         /* Table styling for a clean, professional look */
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; background: white; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
-        th { background-color: #2c3e50; color: white; }
+        table { width: 100%; border-collapse: collapse; margin-top: 12px; background: white; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        th, td { border: 1px solid black; padding: 12px; text-align: left; }
+        th { background-color:#2E5A88 ; color: white; }
         tr:nth-child(even) { background-color: #f9f9f9; }
 
         /* Specific colors for different equipment statuses */
@@ -23,10 +23,10 @@
             cursor: pointer;
             background: #2c3e50;
             color: white;
-            border: none;
+            border: 1px solid black;
             padding: 6px 12px;
             border-radius: 4px;
-            font-size: 0.85em;
+            font-size: 0.80em;
             transition: background 0.3s;
         }
         .btn-checkout:hover { background: #34495e; }
@@ -37,7 +37,7 @@
 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; background: #fff; padding: 15px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
 
     <div>
-        <a href="/register" style="background: blue; color: white; padding: 10px; border-radius: 5px; text-decoration: none; margin-right: 10px;">Register Now</a>
+        <a href="/register" style="background: #2E5A88 ; color: white; padding: 10px; border-radius: 5px; text-decoration: none; margin-right: 10px;">Register Now</a>
 
         @if(Auth::check())
             <form method="POST" action="{{ route('logout') }}" style="display: inline;">
@@ -59,7 +59,7 @@
                 + Add Equipment
             </a>
 
-            <a href="/repairs" style="text-decoration:none; padding:10px; background: #d35400; color:white; border-radius:5px;">
+            <a href="/repairs" style="text-decoration:none; padding:10px; background: orangered; color:white; border-radius:5px;">
                 View Repair Queue
             </a>
         @endif

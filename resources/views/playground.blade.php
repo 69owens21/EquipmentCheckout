@@ -95,6 +95,8 @@
         <button class="btn btn-primary">Primary Action</button>
         <button class="btn btn-warning">Warning Action</button>
         <button class="btn btn-danger">Danger Action</button>
+        <button class="btn btn-testing">Testing Action</button>
+
     </div>
 </div>
 

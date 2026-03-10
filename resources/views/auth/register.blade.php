@@ -36,6 +36,12 @@
         </div>
 
         <div class="mt-4">
+            <x-input-label for="admin_code" :value="__('Admin Registration Code (Optional)')" />
+            <x-text-input id="admin_code" class="block mt-1 w-full" type="text" name="admin_code" />
+            <x-input-error :messages="$errors->get('admin_code')" class="mt-2" />
+        </div>
+
+        <div class="mt-4">
             <x-input-label for="role" :value="__('Account Type')" />
 
             <select id="role" name="role" class="block mt-1 w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" required>
