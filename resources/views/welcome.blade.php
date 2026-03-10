@@ -53,12 +53,20 @@
         @endif
     </div>
 
-    @if(Auth::user() && Auth::user()->role === 'admin')
-        <a href="/repairs" style="text-decoration:none; padding:10px; background: #d35400; color:white; border-radius:5px;">
-            View Repair Queue
-        </a>
-    @endif
+    <div>
+        @if(Auth::user() && Auth::user()->role === 'admin')
+            <a href="/equipment/create" style="text-decoration:none; padding:10px; background: #27ae60; color:white; border-radius:5px; margin-right: 10px;">
+                + Add Equipment
+            </a>
+
+            <a href="/repairs" style="text-decoration:none; padding:10px; background: #d35400; color:white; border-radius:5px;">
+                View Repair Queue
+            </a>
+        @endif
+    </div>
 </div>
+
+
 
 <h1>IT Equipment Inventory</h1>
 
