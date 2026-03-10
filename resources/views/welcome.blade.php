@@ -3,33 +3,85 @@
 <head>
     <title>Equipment Checkout</title>
     <style>
-        /* This section controls how the page looks (colors, fonts, spacing) */
-        body { font-family: Arial, sans-serif; padding: 20px; background-color: #A7C7E7; }
-        h1 { color: #2c3e50; text-decoration: black; }
+        /* 1. LAYOUT & FONTS */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 40px;
+            background-color: #3a5f8a; /* Steel Blue Background */
+            color: #1f2933; /* Dark Slate for text */
+            line-height: 1.6;
+        }
 
-        /* Table styling for a clean, professional look */
-        table { width: 100%; border-collapse: collapse; margin-top: 12px; background: white; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        th, td { border: 1px solid black; padding: 12px; text-align: left; }
-        th { background-color:#2E5A88 ; color: white; }
-        tr:nth-child(even) { background-color: #f9f9f9; }
+        h1 {
+            color: #fffaf0; /* Floral White for high contrast against blue */
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.2);
+        }
 
-        /* Specific colors for different equipment statuses */
-        .status-available { color: green; font-weight: bold; }
-        .status-checked-out { color: red; font-weight: bold; }
-        .status-broken { color: darkorange; font-weight: bold; }
+        /* 2. MODERN TABLE STYLING */
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin-top: 20px;
+            background: #fffaf0; /* Off-white table background */
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            overflow: hidden;
+        }
 
-        /* General styling for all buttons on the page */
+        th {
+            background-color: #00205b; /* TAMUT Navy */
+            color: #fffaf0;
+            padding: 18px;
+            text-align: left;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.05em;
+        }
+
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #e5e7eb;
+            color: #1f2933;
+        }
+
+        tr:last-child td { border-bottom: none; }
+        tr:hover { background-color: #f1f5f9; }
+
+        /* 3. STATUS BADGES */
+        .status-available { color: #16a34a; font-weight: bold; }
+        .status-checked-out { color: #dc2626; font-weight: bold; }
+        .status-broken { color: #ea580c; font-weight: bold; }
+
+        /* 4. BUTTON STYLING */
         .btn-checkout {
             cursor: pointer;
-            background: #2c3e50;
+            background: #00205b; /* Navy Buttons */
             color: white;
-            border: 1px solid black;
-            padding: 6px 12px;
-            border-radius: 4px;
-            font-size: 0.80em;
-            transition: background 0.3s;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 0.85em;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
-        .btn-checkout:hover { background: #34495e; }
+
+        .btn-checkout:hover {
+            background: #3a5f8a;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        /* Input styling for the repair notes */
+        input[type="text"] {
+            border: 1px solid #e5e7eb;
+            padding: 6px;
+            border-radius: 4px;
+            outline-color: #3a5f8a;
+        }
     </style>
 </head>
 <body>
@@ -70,6 +122,18 @@
 
 <h1>IT Equipment Inventory</h1>
 
+<div style="margin-bottom: 20px; background: #fffaf0; padding: 15px; border-radius: 8px; display: flex; gap: 10px; align-items: center; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+    <form action="/" method="GET" style="display: flex; gap: 10px; width: 100%;">
+        <input type="text" name="search" value="{{ request('search') }}" placeholder="Search by name, serial, or type..."
+               style="flex-grow: 1; padding: 10px; border: 1px solid #e5e7eb; border-radius: 6px;">
+
+        <button type="submit" class="btn-checkout" style="background: #3a5f8a;">Search</button>
+
+        @if(request('search'))
+            <a href="/" style="text-decoration: none; color: #721c24; padding: 10px;">Clear</a>
+        @endif
+    </form>
+</div>
 <table>
     <thead>
     <tr>

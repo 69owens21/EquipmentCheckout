@@ -23,9 +23,22 @@ Route::middleware('auth')->group(function () {
      * MAIN INVENTORY PAGE
      * Accessible by: Students and Admins
      */
-    Route::get('/', function () {
-        // We only show items that are NOT currently in the repair shop
-        $inventory = Equipment::where('status', '!=', 'Broken')->get();
+// MAIN INVENTORY PAGE (With Search)
+    Route::get('/', function (Request $request) {
+        $query = Equipment::query()->where('status', '!=', 'Broken');
+
+        // If the user typed something in the search box
+        if ($request->has('search')) {
+            $searchTerm = $request->input('search');
+            $query->where(function($q) use ($searchTerm) {
+                $q->where('name', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('serial_number', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('type', 'like', '%' . $searchTerm . '%');
+            });
+        }
+
+        $inventory = $query->get();
+
         return view('welcome', ['equipment' => $inventory]);
     })->name('home');
 
