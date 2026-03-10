@@ -34,12 +34,30 @@
 </head>
 <body>
 
-<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-    <a href="/register" style="background: blue; color: white; padding: 10px; border-radius: 5px; text-decoration: none;">Register Now</a>
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; background: #fff; padding: 15px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
 
-    <a href="/repairs" style="text-decoration:none; padding:10px; background: #d35400; color:white; border-radius:5px;">
-        View Repair Queue
-    </a>
+    <div>
+        <a href="/register" style="background: blue; color: white; padding: 10px; border-radius: 5px; text-decoration: none; margin-right: 10px;">Register Now</a>
+
+        @if(Auth::check())
+            <form method="POST" action="{{ route('logout') }}" style="display: inline;">
+                @csrf
+                <button type="submit" style="background: #e74c3c; color: white; padding: 10px; border: none; border-radius: 5px; cursor: pointer;">
+                    Log Out
+                </button>
+            </form>
+
+            <span style="margin-left: 15px; font-size: 0.9em; color: #7f8c8d;">
+                Logged in as: <strong>{{ Auth::user()->name }}</strong> ({{ ucfirst(Auth::user()->role) }})
+            </span>
+        @endif
+    </div>
+
+    @if(Auth::user() && Auth::user()->role === 'admin')
+        <a href="/repairs" style="text-decoration:none; padding:10px; background: #d35400; color:white; border-radius:5px;">
+            View Repair Queue
+        </a>
+    @endif
 </div>
 
 <h1>IT Equipment Inventory</h1>
@@ -65,17 +83,20 @@
                 @if($item->status == 'Available')
                     <span class="status-available">{{ $item->status }}</span>
 
+                    @if(Auth::user() && Auth::user()->role === 'student')
                     <form action="/checkout/{{ $item->id }}" method="POST" style="display:inline; margin-left: 10px;">
                         @csrf
                         <button type="submit" class="btn-checkout">Check Out</button>
+                        @endif
                     </form>
 
                     <hr style="border: 0; border-top: 1px solid #eee; margin: 10px 0;">
-
+                    @if(Auth::user() && Auth::user()->role === 'admin')
                     <form action="/repair/{{ $item->id }}" method="POST" style="display:block;">
                         @csrf
                         <input type="text" name="notes" placeholder="What's wrong?" required style="padding: 4px; font-size: 0.8em; width: 120px;">
                         <button type="submit" class="btn-checkout" style="background: #d35400;">Send to Repair</button>
+                        @endif
                     </form>
 
                 @elseif($item->status == 'Checked Out')
